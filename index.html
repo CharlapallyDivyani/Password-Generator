@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Password Generator</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="card">
+    <h1>Password Generator</h1>
+    <p class="subtitle">Create a strong, secure password instantly</p>
+
+    <!-- Password output -->
+    <div class="output-box">
+      <span id="pwDisplay">Click generate</span>
+      <button class="copy-btn" onclick="copyPassword()" aria-label="Copy password">
+        <i class="ti ti-copy"></i> Copy
+      </button>
+    </div>
+
+    <!-- Strength bar -->
+    <div class="strength-section">
+      <div class="strength-info">
+        <span>Strength</span>
+        <span id="strengthLabel">—</span>
+      </div>
+      <div class="strength-track">
+        <div class="strength-fill" id="strengthFill"></div>
+      </div>
+    </div>
+
+    <!-- Length slider -->
+    <div class="slider-row">
+      <label for="lengthSlider">Length</label>
+      <input
+        type="range"
+        id="lengthSlider"
+        min="6"
+        max="32"
+        value="16"
+        step="1"
+        oninput="document.getElementById('lengthVal').textContent = this.value; generatePassword();"
+      />
+      <span class="slider-val" id="lengthVal">16</span>
+    </div>
+
+    <!-- Options -->
+    <div class="options-grid">
+      <div class="opt-box active" id="box-upper" onclick="toggleOption('upper', this)">
+        <input type="checkbox" id="upper" checked />
+        <i class="ti ti-letter-case-upper opt-icon"></i>
+        <span class="opt-label">Uppercase</span>
+      </div>
+      <div class="opt-box active" id="box-lower" onclick="toggleOption('lower', this)">
+        <input type="checkbox" id="lower" checked />
+        <i class="ti ti-letter-case-lower opt-icon"></i>
+        <span class="opt-label">Lowercase</span>
+      </div>
+      <div class="opt-box active" id="box-numbers" onclick="toggleOption('numbers', this)">
+        <input type="checkbox" id="numbers" checked />
+        <i class="ti ti-number opt-icon"></i>
+        <span class="opt-label">Numbers</span>
+      </div>
+      <div class="opt-box active" id="box-symbols" onclick="toggleOption('symbols', this)">
+        <input type="checkbox" id="symbols" checked />
+        <i class="ti ti-at opt-icon"></i>
+        <span class="opt-label">Symbols</span>
+      </div>
+    </div>
+
+    <!-- Generate button -->
+    <button class="gen-btn" onclick="generatePassword()">
+      <i class="ti ti-refresh"></i> Generate password
+    </button>
+  </div>
+
+  <!-- Toast notification -->
+  <div class="toast" id="toast">Copied to clipboard!</div>
+
+  <script src="script.js"></script>
+
+</body>
+</html>
